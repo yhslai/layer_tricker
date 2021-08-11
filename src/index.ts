@@ -24,7 +24,6 @@ photoshop.action.addNotificationListener(['select', 'set'], async (event: string
             default:
                 sampleSheet = SampleSheet.ALL_LAYERS;
         }
-        console.log(sampleSheet);
 
         await setTool(ToolName.EYEDROPPER);
 

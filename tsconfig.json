@@ -12,7 +12,5 @@
   "typeRoots": [
     "./node_modules/@types",
   ],
-  "files": [
-    "src",
-  ]
+  "include": ["src/**/*"]
 }
