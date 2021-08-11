@@ -4,16 +4,20 @@ body {
 
 .button-row {
     display: flex;
-    height: 32px;;
+    height: 32px;
+    margin: 8px 8px;
 }
 
 .button {
     display: block;
     width: 32px;
     height: 32px;
-    margin: 0 4px;
+    margin: 0px 2px;
+    border: 1px solid black;
 }
 
-.button.multi-liquify {
-    background: url('../assets/images/multi-liquify.png')
+#action-multi-liquify {
+    background: url('../assets/images/multi-liquify.png');
+    background-size: 100%;
+    background-position: center center;
 }

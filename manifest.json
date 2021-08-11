@@ -1,6 +1,6 @@
 {
   "id": "f44c8a5c",
-  "name": "Eyedropper Switcher",
+  "name": "Layer Tricker",
   "version": "0.0.1",
   "host": [
     {
@@ -18,20 +18,20 @@
         "default": "Layer Tricker"
       },
       "minimumSize": {
-        "width": 120,
-        "height": 80
+        "width": 250,
+        "height": 90
       },
       "maximumSize": {
         "width": 1200,
         "height": 10000
       },
       "preferredDockedSize": {
-        "width": 150,
-        "height": 200
+        "width": 300,
+        "height": 90 
       },
       "preferredFloatingSize": {
         "width": 300,
-        "height": 200
+        "height": 80
       },
       "commands": [
         {
