@@ -1,7 +1,7 @@
 import { ActionDescriptor } from 'photoshop/dom/CoreModules'
-import { getCurrentToolOptions, setCurrentToolOptions, isTargetingLayer, getTool, setTool } from './ps-action/tool'
-import { getActiveLayer } from './ps-action/layer'
-import { photoshop } from './ps-action/wrapper'
+import { getCurrentToolOptions, setCurrentToolOptions, isTargetingLayer, getTool, setTool } from './ps-api/tool'
+import { getActiveLayer } from './ps-api/layer'
+import { photoshop } from './ps-api/wrapper'
 import { EyedropperToolOptionsDescriptor, SampleSheet, ToolName } from './types/photoshop/Tool'
 import { BlendMode } from './types/photoshop/Common'
 

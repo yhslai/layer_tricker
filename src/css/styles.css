@@ -16,7 +16,7 @@ body {
     border: 1px solid black;
 }
 
-#action-multi-liquify {
+#fireable-multi-liquify {
     background: url('../assets/images/multi-liquify.png');
     background-size: 100%;
     background-position: center center;
