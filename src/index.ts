@@ -5,6 +5,8 @@ import { photoshop } from './ps-action/wrapper'
 import { EyedropperToolOptionsDescriptor, SampleSheet, ToolName } from './types/photoshop/Tool'
 import { BlendMode } from './types/photoshop/Common'
 
+import "./css/styles.css";
+
 
 photoshop.action.addNotificationListener(['select', 'set'], async (event: string, descriptor: ActionDescriptor) => {
     let currentTool = await getTool();

@@ -1,7 +1,7 @@
 {
   "id": "f44c8a5c",
   "name": "Eyedropper Switcher",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "host": [
     {
       "app": "PS",
@@ -15,13 +15,11 @@
       "type": "panel",
       "id": "vanilla",
       "label": {
-        "default": "My Network panel",
-        "en-US": "My Network panel",
-        "es-ES": "My Network panel"
+        "default": "Layer Tricker"
       },
       "minimumSize": {
         "width": 120,
-        "height": 140
+        "height": 80
       },
       "maximumSize": {
         "width": 1200,
