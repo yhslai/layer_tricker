@@ -1,24 +1,38 @@
 import { ActionDescriptor } from 'photoshop/dom/CoreModules'
-import { getCurrentToolOptions, setCurrentToolOptions, isSelectingLayer, getTool, setTool } from './ps-action/tool'
+import { getCurrentToolOptions, setCurrentToolOptions, isTargetingLayer, getTool, setTool } from './ps-action/tool'
 import { getActiveLayer } from './ps-action/layer'
 import { photoshop } from './ps-action/wrapper'
 import { EyedropperToolOptionsDescriptor, SampleSheet, ToolName } from './types/photoshop/Tool'
+import { BlendMode } from './types/photoshop/Common'
 
 
-photoshop.action.addNotificationListener(['select'], async (event: string, descriptor: ActionDescriptor) => {
+photoshop.action.addNotificationListener(['select', 'set'], async (event: string, descriptor: ActionDescriptor) => {
     let currentTool = await getTool();
 
-    if (isSelectingLayer(descriptor)) {
+    if (isTargetingLayer(descriptor)) {
         let layer = await getActiveLayer();
-        console.log(layer);
+        let sampleSheet: SampleSheet;
+
+        switch (layer.mode._value) {
+            case BlendMode.MULTIPLY:
+            case BlendMode.LINEAR_DODGE:
+            case BlendMode.SOFT_LIGHT:
+            case BlendMode.OVERLAY:
+            case BlendMode.HARD_LIGHT:
+                sampleSheet = SampleSheet.CURRENT_LAYER;
+                break;
+            default:
+                sampleSheet = SampleSheet.ALL_LAYERS;
+        }
+        console.log(sampleSheet);
+
         await setTool(ToolName.EYEDROPPER);
 
         let eyedropperOptions = await getCurrentToolOptions<EyedropperToolOptionsDescriptor>();
-        eyedropperOptions.eyeDropperSampleSheet = SampleSheet.ALL_LAYERS;
+        eyedropperOptions.eyeDropperSampleSheet = sampleSheet;
         await setCurrentToolOptions(ToolName.EYEDROPPER, eyedropperOptions);
 
         let result = await setTool(currentTool);
-        console.log(result);
     }
 })
 

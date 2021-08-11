@@ -83,7 +83,7 @@ export async function setCurrentToolOptions(tool: ToolName, currenttooloptions: 
 }
 
 
-export function isSelectingLayer(descriptor: ActionDescriptor): boolean {
+export function isTargetingLayer(descriptor: ActionDescriptor): boolean {
     let target = descriptor._target as Array<Reference>;
     return target.length > 0 && target[0]._ref == 'layer';
 }

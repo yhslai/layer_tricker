@@ -1,5 +1,5 @@
 diff --git a/node_modules/@types/photoshop/dom/CoreModules.d.ts b/node_modules/@types/photoshop/dom/CoreModules.d.ts
-index b9b1baa..1e03b92 100644
+index b9b1baa..09086bb 100644
 --- a/node_modules/@types/photoshop/dom/CoreModules.d.ts
 +++ b/node_modules/@types/photoshop/dom/CoreModules.d.ts
 @@ -16,6 +16,7 @@ export interface BatchPlayCommandOptions {
@@ -10,3 +10,12 @@ index b9b1baa..1e03b92 100644
  }
  /**
   * The module that facilitates Actions being performed in the
+@@ -38,7 +39,7 @@ export declare namespace photoshopAction {
+      * await PhotoshopAction.batchPlay(commands)
+      * ```
+      */
+-    function batchPlay(commands: ActionDescriptor[], options?: BatchPlayCommandOptions): Promise<Array<ActionDescriptor>>;
++    function batchPlay(commands: ActionDescriptor[], options?: BatchPlayCommandOptions): Promise<Array<any>>;
+     /**
+      * Attach a listener to a Photoshop event. A callback in the form
+      * of `(eventName: string, descriptor: Descriptor) => void` will be performed.
