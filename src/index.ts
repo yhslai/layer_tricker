@@ -1,47 +1,25 @@
-import { BatchPlayCommandOptions, photoshopAction, photoshopCore } from 'photoshop/dom/CoreModules';
-import { Photoshop } from 'photoshop/dom/Photoshop';
-import * as photoshopConstants from "photoshop/dom/Constants";
+import { ActionDescriptor } from 'photoshop/dom/CoreModules'
+import { getCurrentToolOptions, setCurrentToolOptions, isSelectingLayer, getTool, setTool } from './ps-action/tool'
+import { getActiveLayer } from './ps-action/layer'
+import { photoshop } from './ps-action/wrapper'
+import { EyedropperToolOptionsDescriptor, SampleSheet, ToolName } from './types/photoshop/Tool'
 
-declare class PhotoshopRequired {
-    app: Photoshop;
-    core: typeof photoshopCore;
-    action: typeof photoshopAction;
-    constants: typeof photoshopConstants;
-};
 
-let photoshop = window.require("photoshop") as PhotoshopRequired;
+photoshop.action.addNotificationListener(['select'], async (event: string, descriptor: ActionDescriptor) => {
+    let currentTool = await getTool();
 
-const app = photoshop.app
-const batchPlay = photoshop.action.batchPlay;
+    if (isSelectingLayer(descriptor)) {
+        let layer = await getActiveLayer();
+        console.log(layer);
+        await setTool(ToolName.EYEDROPPER);
 
-// GET TOOL OPTIONS
-async function getCurrentToolOptions() {
-  const result = await batchPlay(
-  [
-     {
-        "_obj": "get",
-        "_target": [
-           {
-              "_property": "currentToolOptions"
-           },
-           {
-              "_ref": "application",
-              "_enum": "ordinal",
-              "_value": "targetEnum"
-           }
-        ],
-        "_options": {
-           "dialogOptions": "dontDisplay"
-        }
-     }
-  ],{
-     "synchronousExecution": false
-  } as BatchPlayCommandOptions);
-  return result[0].currentToolOptions;
-}
+        let eyedropperOptions = await getCurrentToolOptions<EyedropperToolOptionsDescriptor>();
+        eyedropperOptions.eyeDropperSampleSheet = SampleSheet.ALL_LAYERS;
+        await setCurrentToolOptions(ToolName.EYEDROPPER, eyedropperOptions);
 
-let options = getCurrentToolOptions().then((options) => {
-    console.log(options);
-});
+        let result = await setTool(currentTool);
+        console.log(result);
+    }
+})
 
-console.log("Typescript!  ? ");
+console.log("Eyedroopper Switcher Loaded");
