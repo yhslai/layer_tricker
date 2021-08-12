@@ -20,8 +20,8 @@ export enum BlendMode {
   HARD_MIX = 'hardMix',
   DIFFERENCE = 'difference',
   EXCLUSION = 'exclusion',
-  BLEND_SUBTRACTION = 'blendSubtraction',
-  BLEND_DIVIDE = 'blendDivide',
+  SUBTRACTION = 'blendSubtraction',
+  DIVIDE = 'blendDivide',
   HUE = 'hue',
 }
 

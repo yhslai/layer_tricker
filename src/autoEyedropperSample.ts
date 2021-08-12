@@ -19,6 +19,8 @@ export function setupAutoEyedropperSample(): void {
             switch (layer.mode._value) {
                 case BlendMode.MULTIPLY:
                 case BlendMode.LINEAR_DODGE:
+                case BlendMode.SUBTRACTION:
+                case BlendMode.DIVIDE:
                 case BlendMode.SOFT_LIGHT:
                 case BlendMode.OVERLAY:
                 case BlendMode.HARD_LIGHT:
