@@ -1,6 +1,6 @@
 import { PercentValue } from "photoshop/util/unit";
 import { liquifyDialog, liquifyWithLastMesh } from "./ps-api/filter";
-import { convertToSmartObject, duplicateActiveLayers, getActiveLayer, hideActiveLayers, mergeLayers, selectLayerContent, selectLayerMask, setActiveLayers as setActiveLayer, setLayerProperty, showActiveLayers } from "./ps-api/layer";
+import { convertToSmartObject, duplicateActiveLayers, getActiveLayer, hideActiveLayers, mergeLayers, selectLayerContent, selectLayerMask, selectLayer as selectLayer, setLayerProperty, showActiveLayers, selectContinuousLayers, deleteActiveLayer } from "./ps-api/layer";
 import { transformDialog } from "./ps-api/transform";
 import { ps } from "./ps-api/wrapper";
 
@@ -22,16 +22,9 @@ function betterBackdropLiquify() {
     
 }
 
-function packAndLiquify() {
-    duplicateActiveLayers();
-    showActiveLayers();
-    mergeLayers();
-    convertToSmartObject();
-    betterBackdropLiquify();
-}
 
 function liquifyLayerRecur(id: Number) {
-    setActiveLayer(id);
+    selectLayer(id);
     let doc = ps.app.activeDocument;
     let layer = doc.activeLayers[0];
     let layerDesc = getActiveLayer();
@@ -61,7 +54,7 @@ function liquifyLayerRecur(id: Number) {
     }
 }
 
-function liquifyActiveLayerTrees() {
+function liquifyLayerTrees() {
     let doc = ps.app.activeDocument;
     let layers = doc.activeLayers;
 
@@ -70,22 +63,41 @@ function liquifyActiveLayerTrees() {
     }
 }
 
-function multiLiquify() {
-    // Store active layer IDs
-
+function packAndLiquify() {
     hideActiveLayers();
+    duplicateActiveLayers();
+    showActiveLayers();
+    mergeLayers();
+    convertToSmartObject();
+    betterBackdropLiquify();
+}
+
+function multiLiquify() {
+    let doc = ps.app.activeDocument;
+    // Store original active layer IDs
+    let ids = doc.activeLayers.map(layer => layer._id);
+
     packAndLiquify();
 
     // Delete packed smart object
-    // Select original active layers
-    // liquifyActiveLayerTrees();
+    deleteActiveLayer();
+    
+    // Restore original selection
+    selectContinuousLayers(ids[0], ids[ids.length-1]);
+    showActiveLayers();
+    liquifyLayerTrees();
 }
+
+
 
 export function setupMultiLiquify(): void {
     document.getElementById("modal-multi-liquify").addEventListener('click', (e) => {
         multiLiquify();
     });
-    document.getElementById("modal-liquify-active-layer-trees").addEventListener('click', (e) => {
-        liquifyActiveLayerTrees();
+    document.getElementById("modal-pack-and-liquify").addEventListener('click', (e) => {
+        packAndLiquify();
+    });
+    document.getElementById("modal-liquify-layer-trees").addEventListener('click', (e) => {
+        liquifyLayerTrees();
     });
 }

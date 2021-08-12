@@ -21,3 +21,15 @@ body {
     background-size: 100%;
     background-position: center center;
 }
+
+#modal-pack-and-liquify {
+    background: url('../assets/images/pack-and-liquify.png');
+    background-size: 100%;
+    background-position: center center;
+}
+
+#modal-liquify-layer-trees {
+    background: url('../assets/images/liquify-layer-trees.png');
+    background-size: 100%;
+    background-position: center center;
+}

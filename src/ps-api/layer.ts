@@ -13,7 +13,7 @@ export function getActiveLayer() : LayerDescriptor {
     return result[0];
 }
 
-export function setActiveLayers(id: Number) {
+export function selectLayer(id: Number) {
 	const result = batchPlay(
 		[
 			{
@@ -24,7 +24,6 @@ export function setActiveLayers(id: Number) {
 						"_id": id,
 					}
 				],
-				"makeVisible": false,
 				"_isCommand": false,
 				"_options": {
 					"dialogOptions": "dontDisplay"
@@ -36,6 +35,44 @@ export function setActiveLayers(id: Number) {
 		}
 	);
 }
+
+export function selectContinuousLayers(firstID: Number, lastID: Number) {
+	selectLayer(firstID);
+
+	const result = batchPlay(
+		[
+		   {
+			  "_obj": "select",
+			  "_target": [
+				 {
+					"_ref": "layer",
+					"_id": lastID
+				 }
+			  ],
+			  "selectionModifier": {
+				 "_enum": "selectionModifierType",
+				 "_value": "addToSelectionContinuous"
+			  },
+			  "_isCommand": true,
+			  "_options": {
+				 "dialogOptions": "dontDisplay"
+			  }
+		   }
+		],{
+		   "synchronousExecution": true,
+		   "modalBehavior": "fail"
+		});
+}
+
+export function deleteActiveLayer() {
+    const result = batchPlay([
+      {
+        _obj: 'delete',
+        _target: [{ _ref: 'layer', _enum: 'ordinal', _value: 'targetEnum' }],
+      },
+    ], { synchronousExecution: true })
+}
+
 
 function selectLayerChannel(channel: 'mask' | 'RGB') {
 	const result = batchPlay(
