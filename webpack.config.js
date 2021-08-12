@@ -8,7 +8,10 @@ const CopyPlugin = require("copy-webpack-plugin");
 const isProduction = process.env.NODE_ENV == "production";
 
 const config = {
-  entry: "./src/index.ts",
+  entry: {
+    'main': "./src/index.ts",
+    'test': "./src/test.ts",
+  },
   output: {
     path: path.resolve(__dirname, "dist"),
     assetModuleFilename: 'images/[name]-[hash][ext][query]'
