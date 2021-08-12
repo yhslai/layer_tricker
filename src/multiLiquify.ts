@@ -1,6 +1,6 @@
 import { PercentValue } from "photoshop/util/unit";
 import { liquifyDialog, liquifyWithLastMesh } from "./ps-api/filter";
-import { convertToSmartObject, duplicateActiveLayers, getActiveLayer, hideActiveLayer, mergeLayers, selectLayerContent, selectLayerMask, setActiveLayers as setActiveLayer, setLayerProperty, showActiveLayer } from "./ps-api/layer";
+import { convertToSmartObject, duplicateActiveLayers, getActiveLayer, hideActiveLayers, mergeLayers, selectLayerContent, selectLayerMask, setActiveLayers as setActiveLayer, setLayerProperty, showActiveLayers } from "./ps-api/layer";
 import { transformDialog } from "./ps-api/transform";
 import { ps } from "./ps-api/wrapper";
 
@@ -24,7 +24,7 @@ function betterBackdropLiquify() {
 
 function packAndLiquify() {
     duplicateActiveLayers();
-    showActiveLayer();
+    showActiveLayers();
     mergeLayers();
     convertToSmartObject();
     betterBackdropLiquify();
@@ -73,7 +73,7 @@ function liquifyActiveLayerTrees() {
 function multiLiquify() {
     // Store active layer IDs
 
-    hideActiveLayer();
+    hideActiveLayers();
     packAndLiquify();
 
     // Delete packed smart object
