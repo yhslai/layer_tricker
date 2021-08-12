@@ -6,7 +6,7 @@ import { EyedropperToolOptionsDescriptor, SampleSheet, ToolName } from './types/
 import { BlendMode } from './types/photoshop/Common'
 
 export function setupAutoEyedropperSample(): void {
-    photoshop.action.addNotificationListener(['select', 'set', 'make'], async (event: string, descriptor: ActionDescriptor) => {
+    photoshop.action.addNotificationListener(['select', 'set', 'make', 'delete'], async (event: string, descriptor: ActionDescriptor) => {
         // All these events can change the status of active layer:
         // 'select': select a layer;
         // 'set': set active layer's blend mode
