@@ -3,7 +3,7 @@ import { BlendModeEnum } from "./Common";
 import { PointDescriptor, UVPointDescriptor } from "./Geometry";
 import { GradientDescriptor, GradientTypeEnum } from "./Gradient";
 import { PatternDescriptor } from "./Layer";
-import { AngleValue, PercentValue, PixelValue } from "./Unit";
+import { AngleValue, PercentValue, PixelValue } from "photoshop/util/unit";
 
 export interface LayerEffectsDescriptor {
   _obj?: "layerEffects",

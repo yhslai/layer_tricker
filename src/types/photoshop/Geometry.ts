@@ -1,4 +1,4 @@
-import { PixelValue, UnitValue } from "./Unit";
+import { PixelValue, UnitValue } from "photoshop/util/unit";
 
 export interface AlignmentEnum {
   _enum: 'alignmentType'

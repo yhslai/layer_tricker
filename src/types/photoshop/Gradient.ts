@@ -1,5 +1,5 @@
 import { PsColor, ColorSpaceEnum } from "./Color";
-import { PercentValue } from "./Unit";
+import { PercentValue } from "photoshop/util/unit";
 
 export interface GradientFormEnum {
   _enum: 'gradientForm'

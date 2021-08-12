@@ -1,9 +1,7 @@
+import { AngleValue, DistanceValue, PercentValue } from 'photoshop/util/unit'
 import { PsColor } from './Color'
 import { FileReference } from './Reference'
 import {
-  AngleValue,
-  DistanceValue,
-  PercentValue,
 
   RulerUnitsEnum
 } from './Unit'

@@ -4,10 +4,11 @@ import { BlendModeEnum } from "./Common";
 import { PointDescriptor, TopRightBottomLeft, UVRectangleDescriptor, UVTopRightBottomLeft } from "./Geometry";
 import { GradientDescriptor, GradientType } from "./Gradient";
 import { LayerEffectsDescriptor } from "./LayerEffects";
+import { TargetEnum } from "./Reference";
 import { SmartObjectDescriptor, SmartObjectMore } from "./SmartObject";
 import { TextKeyDescriptor } from "./TextKey";
 import { TransformMatrixDescriptor } from "./Transform";
-import { AngleValue, PixelValue } from "./Unit";
+import { AngleValue, PixelValue } from "photoshop/util/unit";
 
 export type LayerKind =
   0 | // any
@@ -88,6 +89,11 @@ export interface LayerDescriptor {
 
   // --- Adjustment Layer
   adjustment: Adjustment[]
+}
+
+export interface LayerDuplicatedDescriptor {
+  ID: Array<Number>,
+  _target: Array<TargetEnum>
 }
 
 export interface PathBoundsDescriptor {

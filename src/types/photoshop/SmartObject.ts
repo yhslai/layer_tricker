@@ -3,7 +3,8 @@ import { BlendModeEnum } from "./Common";
 import { CornersArray, PointDescriptor, PointDescriptorWidthHeight } from "./Geometry";
 import { FileReference } from "./Reference";
 import { WarpDescriptorExtended } from "./Transform";
-import { DensityValue, Fraction, PercentValue } from "./Unit";
+import { DensityValue, PercentValue } from "photoshop/util/unit";
+import { Fraction } from "./Unit";
 
 export interface SmartObjectMore {
   ID: string // UUID

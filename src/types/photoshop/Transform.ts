@@ -1,6 +1,6 @@
+import { UnitValue } from "photoshop/util/unit";
 import { OrientationEnum } from "./Geometry";
 import { FloatRectDescriptor } from "./Layer";
-import { Unit } from "./Unit";
 
 export interface TransformMatrixDescriptor {
   _obj: 'transform'
@@ -48,11 +48,11 @@ export interface RationalPointList {
   _objList: 'rationalPoint'
   horizontal: {
     list: number[]
-    _unit: Unit
+    _unit: UnitValue
   },
   vertical: {
     list: number[]
-    _unit: Unit
+    _unit: UnitValue
   },
 }
 

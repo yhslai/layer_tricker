@@ -11,10 +11,10 @@ import {
 import {
   DensityValue,
   DistanceValue,
-  NoneValue,
   PercentValue,
   PixelValue
-} from './Unit'
+} from 'photoshop/util/unit'
+import { NoneUnit } from "./Unit"
 
 export interface DocumentDescriptor {
   mode: ColorSpaceModeEnum;
@@ -48,7 +48,7 @@ export interface DocumentDescriptor {
   quickMask: boolean;
   histogram: number[];
   EXIF: string;
-  pixelScaleFactor: NoneValue;
+  pixelScaleFactor: NoneUnit;
   XMPMetadataAsUTF8: string;
   compsList?: CompsClassDescriptor[];
   measurementScale: MeasurementScaleDescriptor;

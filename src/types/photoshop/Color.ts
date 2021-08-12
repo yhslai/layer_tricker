@@ -1,6 +1,6 @@
 import { IntentEnum } from "./Document";
 import { PolicyEnum } from "./Preferences";
-import { UnitValue } from "./Unit";
+import { UnitValue } from "photoshop/util/unit";
 
 /**
  * -------------------------------------------------------------------------------------------------

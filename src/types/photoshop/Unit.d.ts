@@ -1,15 +1,4 @@
-export type Unit =
-  'angleUnit' |
-  'densityUnit' |
-  'distanceUnit' |
-  'percentUnit' |
-  'pixelsUnit' |
-  'pointsUnit' |
-  'millimetersUnit' |
-  'centimetersUnit' |
-  'inchesUnit' |
-  'picasUnit' |
-  'noneUnit'
+import { UnitValue } from "photoshop/util/unit"
 
 export type RulerUnit =
   'rulerPixels' |
@@ -30,51 +19,7 @@ export interface Fraction {
   denominator: number
 }
 
-export interface UnitValue {
-  _unit: Unit
-  _value: number
+export interface NoneUnit extends UnitValue {
+  _unit: "noneUnit";
 }
 
-export interface AngleValue extends UnitValue {
-  _unit: 'angleUnit'
-}
-
-export interface DensityValue extends UnitValue {
-  _unit: 'densityUnit'
-}
-
-export interface DistanceValue extends UnitValue {
-  _unit: 'distanceUnit'
-}
-
-export interface PercentValue extends UnitValue {
-  _unit: 'percentUnit'
-}
-
-export interface PixelValue extends UnitValue {
-  _unit: 'pixelsUnit'
-}
-
-export interface PointValue extends UnitValue {
-  _unit: 'pointsUnit'
-}
-
-export interface MillimeterValue extends UnitValue {
-  _unit: 'millimetersUnit'
-}
-
-export interface CentimeterValue extends UnitValue {
-  _unit: 'centimetersUnit'
-}
-
-export interface InchValue extends UnitValue {
-  _unit: 'inchesUnit'
-}
-
-export interface PicaValue extends UnitValue {
-  _unit: 'picasUnit'
-}
-
-export interface NoneValue extends UnitValue {
-  _unit: 'noneUnit'
-}

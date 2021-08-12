@@ -4,13 +4,13 @@ import { Orientation } from './Geometry'
 import { GradientDescriptor, GradientTypeNumeric } from './Gradient'
 import { RadiiDescriptor, SolidColorLayerDescriptor, PatternDescriptor } from './Layer'
 import { ParagraphStyleDescriptor, TextGriddingEnum, TextStyleDescriptor } from './TextKey'
+import { NoneUnit } from './Unit'
 import {
   AngleValue,
-  NoneValue,
   PercentValue,
   PixelValue,
   PointValue
-} from './Unit'
+} from 'photoshop/util/unit'
 
 interface CTODesc {
   _obj: 'currentToolOptions'
@@ -585,7 +585,7 @@ export interface StrokStyleDescriptor {
   strokeStyleLineAlignment: StrokeStyleLineAlignmentEnum
   strokeStyleScaleLock: boolean
   strokeStyleStrokeAdjust: boolean
-  strokeStyleLineDashSet: NoneValue[]
+  strokeStyleLineDashSet: NoneUnit[]
   strokeStyleBlendMode: BlendModeEnum
   strokeStyleOpacity: PercentValue
   strokeStyleContent: SolidColorLayerDescriptor

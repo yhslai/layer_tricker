@@ -1,7 +1,7 @@
 import { PsColor } from "./Color";
 import { AlignmentEnum, OrientationEnum, RectangleDescriptor, UVPointDescriptor, UVTopRightBottomLeft } from "./Geometry";
 import { TransformMatrixDescriptor, WarpDescriptor } from "./Transform";
-import { PercentValue, PointValue } from "./Unit";
+import { PercentValue, PointValue } from "photoshop/util/unit";
 import { PathContentsDescriptor } from "./Path";
 
 export interface TextKeyDescriptor {

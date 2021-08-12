@@ -1,12 +1,12 @@
 import { ActionDescriptor } from 'photoshop/dom/CoreModules'
 import { getCurrentToolOptions, setCurrentToolOptions, isTargetingLayer, getTool, setTool } from './ps-api/tool'
 import { getActiveLayer } from './ps-api/layer'
-import { photoshop } from './ps-api/wrapper'
+import { ps } from './ps-api/wrapper'
 import { EyedropperToolOptionsDescriptor, SampleSheet, ToolName } from './types/photoshop/Tool'
 import { BlendMode } from './types/photoshop/Common'
 
 export function setupAutoEyedropperSample(): void {
-    photoshop.action.addNotificationListener(['select', 'set', 'make', 'delete'], async (event: string, descriptor: ActionDescriptor) => {
+    ps.action.addNotificationListener(['select', 'set', 'make', 'delete'], async (event: string, descriptor: ActionDescriptor) => {
         // All these events can target a layer
         if (isTargetingLayer(descriptor)) {
             // Store current tool so we can switch back...

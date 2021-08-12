@@ -8,6 +8,6 @@ class PhotoshopWrapper {
     constants: typeof photoshopConstants;
 };
 
-export const photoshop = window.require("photoshop") as PhotoshopWrapper;
-export const app = photoshop.app
-export const batchPlay = photoshop.action.batchPlay;
+export const ps = window.require("photoshop") as PhotoshopWrapper;
+export const app = ps.app
+export const batchPlay = ps.action.batchPlay;
