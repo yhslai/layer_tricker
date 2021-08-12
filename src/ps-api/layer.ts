@@ -158,7 +158,7 @@ export function convertToSmartObject() {
 		
 }
 
-export function hideActiveLayer() {
+export function hideActiveLayers() {
 	const result = batchPlay(
 		[
 		   {
@@ -181,7 +181,7 @@ export function hideActiveLayer() {
 		});
 }
 
-export function showActiveLayer() {
+export function showActiveLayers() {
 	const result = batchPlay(
 		[
 		   {
