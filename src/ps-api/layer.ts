@@ -70,6 +70,8 @@ export function selectLayerContent() {
 }
 
 export function setLayerProperty<T>(key: string, value: T) {
+	console.log(key);
+	console.log(value);
 	const result = batchPlay(
 		[
 		   {
@@ -83,7 +85,7 @@ export function setLayerProperty<T>(key: string, value: T) {
 			  ],
 			  "to": {
 				 "_obj": "layer",
-				 key: value,
+				 [key]: value,
 			  },
 			  "_isCommand": true,
 			  "_options": {
@@ -154,4 +156,50 @@ export function convertToSmartObject() {
 		   "modalBehavior": "fail"
 		});
 		
+}
+
+export function hideActiveLayer() {
+	const result = batchPlay(
+		[
+		   {
+			  "_obj": "hide",
+			  "null": [
+				 {
+					"_ref": "layer",
+					"_enum": "ordinal",
+					"_value": "targetEnum"
+				 }
+			  ],
+			  "_isCommand": true,
+			  "_options": {
+				 "dialogOptions": "dontDisplay"
+			  }
+		   }
+		],{
+		   "synchronousExecution": true,
+		   "modalBehavior": "fail"
+		});
+}
+
+export function showActiveLayer() {
+	const result = batchPlay(
+		[
+		   {
+			  "_obj": "show",
+			  "null": [
+				 {
+					"_ref": "layer",
+					"_enum": "ordinal",
+					"_value": "targetEnum"
+				 }
+			  ],
+			  "_isCommand": true,
+			  "_options": {
+				 "dialogOptions": "dontDisplay"
+			  }
+		   }
+		],{
+		   "synchronousExecution": true,
+		   "modalBehavior": "fail"
+		});
 }
