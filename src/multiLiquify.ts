@@ -23,7 +23,7 @@ function betterBackdropLiquify() {
 }
 
 
-function liquifyLayerRecur(id: Number) {
+function liquifyLayerRecur(id: number) {
     selectLayer(id);
     let doc = ps.app.activeDocument;
     let layer = doc.activeLayers[0];

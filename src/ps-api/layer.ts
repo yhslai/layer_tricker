@@ -13,7 +13,7 @@ export function getActiveLayer() : LayerDescriptor {
     return result[0];
 }
 
-export function getLayer(id: Number) : LayerDescriptor {
+export function getLayer(id: number) : LayerDescriptor {
     const result = batchPlay([
       {
         _obj: 'get',
@@ -24,7 +24,7 @@ export function getLayer(id: Number) : LayerDescriptor {
     return result[0];
 }
 
-export function selectLayer(id: Number) {
+export function selectLayer(id: number) {
 	const result = batchPlay(
 		[
 			{
@@ -47,7 +47,7 @@ export function selectLayer(id: Number) {
 	);
 }
 
-export function selectContinuousLayers(firstID: Number, lastID: Number) {
+export function selectContinuousLayers(firstID: number, lastID: number) {
 	selectLayer(firstID);
 
 	const result = batchPlay(
@@ -295,7 +295,7 @@ export function deleteMask() {
 		});
 }
 
-export function releaseClippingMask(id: Number) {
+export function releaseClippingMask(id: number) {
 	
 	const result = batchPlay(
 		[

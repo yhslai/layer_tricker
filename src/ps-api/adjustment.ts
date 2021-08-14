@@ -1,7 +1,7 @@
 import { batchPlay } from './wrapper';
 
 
-export function threshold(level: Number) {
+export function threshold(level: number) {
    const result = batchPlay(
       [
          {

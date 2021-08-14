@@ -92,7 +92,7 @@ export interface LayerDescriptor {
 }
 
 export interface LayerDuplicatedDescriptor {
-  ID: Array<Number>,
+  ID: Array<number>,
   _target: Array<TargetEnum>
 }
 
