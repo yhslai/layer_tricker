@@ -54,7 +54,8 @@ function clippingStackToGroup() {
 
     selectLayer(clippingBase._id);
     createMaskFromTransparency();
-    deleteMask();
+    threshold(1);
+    deleteMask(true);
 
     releaseClippingMask(firstClipped._id);
 

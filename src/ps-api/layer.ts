@@ -272,7 +272,7 @@ export function createMaskFromTransparency() {
 		});
 }
 
-export function deleteMask() {
+export function deleteMask(apply: boolean) {
 	const result = batchPlay(
 		[
 		   {
@@ -285,6 +285,7 @@ export function deleteMask() {
 				 }
 			  ],
 			  "_isCommand": false,
+			  "apply": apply,
 			  "_options": {
 				 "dialogOptions": "dontDisplay"
 			  }
