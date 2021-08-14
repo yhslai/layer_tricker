@@ -19,7 +19,7 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "index.html",
-      inject: false,
+      chunks: ['main'],
     }),
     new MiniCssExtractPlugin(),
     new CopyPlugin({
