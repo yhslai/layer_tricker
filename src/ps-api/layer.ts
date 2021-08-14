@@ -13,6 +13,17 @@ export function getActiveLayer() : LayerDescriptor {
     return result[0];
 }
 
+export function getLayer(id: Number) : LayerDescriptor {
+    const result = batchPlay([
+      {
+        _obj: 'get',
+        _target: [{ _ref: 'layer', _id: id }],
+      },
+    ], { synchronousExecution: true })
+    
+    return result[0];
+}
+
 export function selectLayer(id: Number) {
 	const result = batchPlay(
 		[
@@ -178,6 +189,136 @@ export function mergeLayers() {
 		});
 }
 
+export function createGroupFromLayer(name: string) {
+	const result =  batchPlay(
+		[
+		   {
+			  "_obj": "make",
+			  "_target": [
+				 { "_ref": "layerSection" }
+			  ],
+			  "from": {
+				 "_ref": "layer", "_enum": "ordinal", "_value": "targetEnum"
+			  },
+			  "using": {
+				 "_obj": "layerSection", "name": name,
+			  }, 
+			  "_isCommand": true,
+			  "_options": {
+				 "dialogOptions": "dontDisplay"
+			  }
+		   }
+		],{
+		   "synchronousExecution": true,
+		   "modalBehavior": "fail"
+		});
+
+	return result[0];
+}
+
+export function createMaskBySelection() {
+	const result = batchPlay(
+	[
+	{
+		"_obj": "make",
+		"new": {
+			"_class": "channel"
+		},
+		"at": {
+			"_ref": "channel",
+			"_enum": "channel",
+			"_value": "mask"
+		},
+		"using": {
+			"_enum": "userMaskEnabled",
+			"_value": "revealSelection"
+		},
+		"_isCommand": true,
+		"_options": {
+			"dialogOptions": "dontDisplay"
+		}
+	}
+	],{
+	"synchronousExecution": true,
+	"modalBehavior": "fail"
+	});
+}
+
+export function createMaskFromTransparency() {
+	batchPlay(
+		[
+		   {
+			  "_obj": "make",
+			  "new": {
+				 "_class": "channel"
+			  },
+			  "at": {
+				 "_ref": "channel",
+				 "_enum": "channel",
+				 "_value": "mask"
+			  },
+			  "using": {
+				 "_enum": "userMaskEnabled",
+				 "_value": "transparency"
+			  },
+			  "_isCommand": true,
+			  "_options": {
+				 "dialogOptions": "dontDisplay"
+			  }
+		   }
+		],{
+		   "synchronousExecution": true,
+		   "modalBehavior": "fail"
+		});
+}
+
+export function deleteMask() {
+	const result = batchPlay(
+		[
+		   {
+			  "_obj": "delete",
+			  "_target": [
+				 {
+					"_ref": "channel",
+					"_enum": "ordinal",
+					"_value": "targetEnum"
+				 }
+			  ],
+			  "_isCommand": false,
+			  "_options": {
+				 "dialogOptions": "dontDisplay"
+			  }
+		   }
+		],{
+		   "synchronousExecution": true,
+		   "modalBehavior": "fail"
+		});
+}
+
+export function releaseClippingMask(id: Number) {
+	
+	const result = batchPlay(
+		[
+			{
+				"_obj": "ungroup",
+				"_target": [
+					{
+						"_ref": "layer",
+						"_id": id,
+					}
+				],
+				"_isCommand": true,
+				"_options": {
+					"dialogOptions": "dontDisplay"
+				}
+			}
+		], {
+		"synchronousExecution": true,
+		"modalBehavior": "fail"
+	});
+}
+
+
 export function convertToSmartObject() {
 	const result = batchPlay(
 		[
@@ -238,5 +379,59 @@ export function showActiveLayers() {
 		],{
 		   "synchronousExecution": true,
 		   "modalBehavior": "fail"
+		});
+}
+
+export function enableQuickMask() {
+	const result = batchPlay(
+		[
+		{
+			"_obj": "set",
+			"_target": [
+				{
+					"_ref": "property",
+					"_property": "quickMask"
+				},
+				{
+					"_ref": "document",
+					"_enum": "ordinal",
+					"_value": "targetEnum"
+				}
+			],
+			"_isCommand": true,
+			"_options": {
+				"dialogOptions": "dontDisplay"
+			}
+		}
+		],{
+		"synchronousExecution": true,
+		"modalBehavior": "fail"
+		});
+}
+
+export function disableQuickMask() {
+	const result = batchPlay(
+		[
+		{
+			"_obj": "clearEvent",
+			"_target": [
+				{
+					"_ref": "property",
+					"_property": "quickMask"
+				},
+				{
+					"_ref": "document",
+					"_enum": "ordinal",
+					"_value": "targetEnum"
+				}
+			],
+			"_isCommand": true,
+			"_options": {
+				"dialogOptions": "dontDisplay"
+			}
+		}
+		],{
+		"synchronousExecution": true,
+		"modalBehavior": "fail"
 		});
 }
