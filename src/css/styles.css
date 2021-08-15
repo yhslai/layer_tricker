@@ -33,3 +33,15 @@ body {
     background-size: 100%;
     background-position: center center;
 }
+
+#modal-clipping-stack-to-group {
+    background: url('../assets/images/clipping-stack-to-group.png');
+    background-size: 100%;
+    background-position: center center;
+}
+
+#modal-add-to-upstream-masks {
+    background: url('../assets/images/add-to-upstream-masks.png');
+    background-size: 100%;
+    background-position: center center;
+}
