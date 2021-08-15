@@ -1,7 +1,7 @@
 
 import { batchPlay } from './wrapper';
 
-export function selectByTransparency() {
+export function selectionByTransparency() {
     const result = batchPlay(
         [
         {
@@ -25,5 +25,31 @@ export function selectByTransparency() {
         ],{
         "synchronousExecution": true,
         "modalBehavior": "fail"
+        });
+}
+
+export function deselectAll() {
+    batchPlay(
+        [
+           {
+              "_obj": "set",
+              "_target": [
+                 {
+                    "_ref": "channel",
+                    "_property": "selection"
+                 }
+              ],
+              "to": {
+                 "_enum": "ordinal",
+                 "_value": "none"
+              },
+              "_isCommand": false,
+              "_options": {
+                 "dialogOptions": "dontDisplay"
+              }
+           }
+        ],{
+           "synchronousExecution": false,
+           "modalBehavior": "fail"
         });
 }

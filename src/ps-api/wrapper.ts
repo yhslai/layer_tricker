@@ -11,3 +11,7 @@ class PhotoshopWrapper {
 export const ps = window.require("photoshop") as PhotoshopWrapper;
 export const app = ps.app
 export const batchPlay = ps.action.batchPlay;
+
+// For debugging
+(window as any).ps = ps;
+(window as any).batchPlay = batchPlay;

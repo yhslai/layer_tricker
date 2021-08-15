@@ -1,4 +1,3 @@
-
 import { LayerDescriptor, LayerDuplicatedDescriptor } from '../types/photoshop/Layer';
 import { batchPlay } from './wrapper';
 
@@ -46,6 +45,36 @@ export function selectLayer(id: number) {
 		}
 	);
 }
+
+export enum LayerToward {
+	TOP = "forewardEnum",
+	BOTTOM = "backwardEnum"
+}
+
+
+export function selectLayerToward(toward: LayerToward) {
+	const result = batchPlay(
+		[
+		{
+			"_obj": "select",
+			"_target": [
+				{
+					"_ref": "layer",
+					"_enum": "ordinal",
+					"_value": toward
+				}
+			],
+			"_isCommand": true,
+			"_options": {
+				"dialogOptions": "dontDisplay"
+			}
+		}
+		],{
+		"synchronousExecution": true,
+		"modalBehavior": "fail"
+		});
+}
+
 
 export function selectContinuousLayers(firstID: number, lastID: number) {
 	selectLayer(firstID);
@@ -173,6 +202,31 @@ export function duplicateActiveLayers() : Promise<LayerDuplicatedDescriptor> {
 	return result[0];
 }
 
+export function moveLayerAboveIndex(index: number) {
+	const result = batchPlay(
+		[{
+			"_obj": "move",
+			"_target": [
+				{
+					"_ref": "layer", "_enum": "ordinal", "_value": "targetEnum"
+				}
+			],
+			"to": {
+				"_ref": "layer",
+				"_index": index
+			},
+			"_isCommand": true,
+			"_options": {
+				"dialogOptions": "dontDisplay"
+			}
+		}
+		], {
+		"synchronousExecution": true,
+		"modalBehavior": "fail"
+	});
+
+}
+
 export function mergeLayers() {
 	const result = batchPlay(
 		[
@@ -188,6 +242,10 @@ export function mergeLayers() {
 		   "modalBehavior": "fail"
 		});
 }
+
+// Same function internally
+export const mergeDown = mergeLayers
+
 
 export function createGroupFromLayer(name: string) {
 	const result =  batchPlay(
@@ -272,7 +330,7 @@ export function createMaskFromTransparency() {
 		});
 }
 
-export function deleteMask(apply: boolean) {
+export function deleteMask(apply: boolean = false) {
 	const result = batchPlay(
 		[
 		   {
@@ -295,6 +353,8 @@ export function deleteMask(apply: boolean) {
 		   "modalBehavior": "fail"
 		});
 }
+
+export const applyMask = () => deleteMask(true)
 
 export function releaseClippingMask(id: number) {
 	
@@ -436,3 +496,7 @@ export function disableQuickMask() {
 		"modalBehavior": "fail"
 		});
 }
+
+
+// For debugging
+(window as any).getActiveLayer = getActiveLayer;
